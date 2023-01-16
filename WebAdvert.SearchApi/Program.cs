@@ -14,6 +14,8 @@ builder.Services.AddTransient<ISearchService, SearchService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Logging.AddAWSProvider(builder.Configuration.GetAWSLoggingConfigSection(),
+    formatter:(logelvel, message, exception)=>$"[{DateTime.Now} {logelvel} {message} {exception?.Message}]");
 
 var app = builder.Build();
 
