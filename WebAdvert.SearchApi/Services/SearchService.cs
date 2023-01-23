@@ -15,7 +15,9 @@ namespace WebAdvert.SearchApi.Services
             query.Term(field =>
             field.Title, keyword.ToLower())));
 
-            return searchResponse.Hits.Select(hit => hit.Source).ToList();
+            List<AdvertType> result = searchResponse.Hits.Select(hit => hit.Source).ToList<AdvertType>();
+
+            return result;
         }
     }
 }
